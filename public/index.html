@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <title>Forge — AI Coding Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div><div class="brand-name">forge<span>.</span></div><div class="brand-sub">CODING WORKSPACE</div></div>
+        <button class="icon-btn sidebar-close" id="closeSidebar" aria-label="Close sidebar">×</button>
+      </div>
+      <button class="new-chat" id="newChat"><span class="plus">＋</span> New conversation <kbd>⌘ K</kbd></button>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-mode="chat"><span class="nav-icon">⌘</span> AI chat <span class="nav-dot"></span></button>
+      <button class="nav-item" data-prompt="Help me debug this code. Ask me to paste the relevant code and the full error message, then work through the likely cause."><span class="nav-icon">⌁</span> Debug an error</button>
+      <button class="nav-item" data-prompt="Help me plan and build a new software project. Start by asking only the essential questions, then propose a practical file structure and implementation plan."><span class="nav-icon">▧</span> Build a project</button>
+      <button class="nav-item" data-prompt="Review the code I provide for bugs, security issues, performance problems, and readability. Explain findings by severity and provide corrected code."><span class="nav-icon">◉</span> Code review</button>
+      <div class="side-label recent-label">RECENT CHATS <button id="clearChats" title="Clear saved chats">Clear</button></div>
+      <div class="history" id="history"></div>
+      <div class="sidebar-bottom">
+        <div class="model-card">
+          <div class="status-line"><span class="green-dot"></span> MODEL CONNECTED</div>
+          <div class="model-name">Claude Sonnet 5.5</div>
+          <div class="model-meta">via OpenRouter <span>↗</span></div>
+        </div>
+        <div class="profile"><div class="avatar">F</div><div class="profile-copy"><strong>Local workspace</strong><span>Private on this device</span></div><span class="profile-menu">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="openSidebar" aria-label="Open sidebar">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="crumbTitle">New conversation</strong></div>
+        <div class="topbar-right"><span class="secure-label"><span class="green-dot"></span> API key secured server-side</span><button class="icon-btn" id="themeBtn" title="Toggle contrast">◐</button></div>
+      </header>
+
+      <section class="chat-scroll" id="chatScroll">
+        <div class="welcome" id="welcome">
+          <div class="eyebrow"><span class="spark">✳</span> YOUR AI DEVELOPMENT PARTNER</div>
+          <h1>Make something<br><span>remarkable.</span></h1>
+          <p class="welcome-copy">From first idea to final fix. Think through problems, write cleaner code, and ship with confidence.</p>
+          <div class="suggestions">
+            <button class="suggestion" data-prompt="Help me create a clean, responsive website from scratch. Start with a plan, then provide the complete files."><span class="suggestion-icon purple">⌘</span><span><strong>Build something new</strong><small>Turn an idea into a working project</small></span><span class="suggestion-arrow">↗</span></button>
+            <button class="suggestion" data-prompt="Teach me how to debug code systematically. Give me a simple checklist and ask me to share my current error."><span class="suggestion-icon orange">⌁</span><span><strong>Fix a stubborn bug</strong><small>Trace errors and find the cause</small></span><span class="suggestion-arrow">↗</span></button>
+            <button class="suggestion" data-prompt="Show me how to refactor messy code safely. Ask me to paste a file, then return the complete improved version and explain key changes."><span class="suggestion-icon blue">⟲</span><span><strong>Refactor my code</strong><small>Make it cleaner and easier to maintain</small></span><span class="suggestion-arrow">↗</span></button>
+            <button class="suggestion" data-prompt="Help me understand an unfamiliar codebase. Ask me to share its folder structure or key files, then map out how it works."><span class="suggestion-icon green">⌗</span><span><strong>Understand a codebase</strong><small>Map files, functions, and data flow</small></span><span class="suggestion-arrow">↗</span></button>
+          </div>
+          <div class="welcome-foot"><span>✦</span> Built for real code, not just conversation.</div>
+        </div>
+        <div class="messages" id="messages" hidden></div>
+      </section>
+
+      <footer class="composer-area">
+        <div class="composer" id="composer">
+          <textarea id="prompt" rows="1" placeholder="Ask Forge anything about code..." aria-label="Message Forge"></textarea>
+          <div class="composer-bottom">
+            <div class="composer-tools"><span class="composer-hint"><kbd>↵</kbd> to send <span class="hint-divider">·</span> <kbd>shift ↵</kbd> new line</span></div>
+            <div class="composer-actions"><span class="context-label">CODING MODE <span>✳</span></span><button id="sendBtn" class="send-btn" aria-label="Send message"><span>↑</span></button></div>
+          </div>
+        </div>
+        <div class="disclaimer">Forge can make mistakes. Review generated code before running it.</div>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
